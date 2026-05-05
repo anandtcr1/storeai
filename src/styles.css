@@ -1,0 +1,189 @@
+/* =========================================================================
+   SmartStore AI — Wireframe styles
+   Intentionally minimal. Bootstrap utilities do most of the work.
+   The "wireframe look" is achieved with muted greys, dashed borders,
+   and placeholder hatching for visualizations.
+   ========================================================================= */
+
+:root {
+  --ss-sidebar-w: 240px;
+  --ss-header-h: 60px;
+  --ss-ink: #1f2937;
+  --ss-muted: #6b7280;
+  --ss-line: #e5e7eb;
+  --ss-bg: #f8f9fa;
+  --ss-accent: #0d6efd; /* Bootstrap primary */
+}
+
+body {
+  background: var(--ss-bg);
+  color: var(--ss-ink);
+  font-size: 0.92rem;
+}
+
+/* ---------- Layout shell ------------------------------------------------- */
+.ss-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.ss-header {
+  height: var(--ss-header-h);
+  border-bottom: 1px solid var(--ss-line);
+  background: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+}
+
+.ss-body {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+.ss-sidebar {
+  width: var(--ss-sidebar-w);
+  border-right: 1px solid var(--ss-line);
+  background: #fff;
+  flex-shrink: 0;
+  /* Sidebar collapses to off-canvas drawer on mobile (handled in component) */
+}
+
+.ss-content {
+  flex: 1;
+  padding: 1.25rem;
+  min-width: 0; /* allow children to shrink for responsive tables/charts */
+}
+
+@media (max-width: 991.98px) {
+  .ss-sidebar.ss-sidebar-desktop { display: none; }
+}
+
+/* ---------- Sidebar nav -------------------------------------------------- */
+.ss-nav-group-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ss-muted);
+  padding: 0.75rem 1rem 0.25rem;
+}
+
+.ss-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 1rem;
+  color: var(--ss-ink);
+  text-decoration: none;
+  font-size: 0.9rem;
+  border-left: 3px solid transparent;
+}
+.ss-nav-link:hover { background: var(--ss-bg); }
+.ss-nav-link.active {
+  background: rgba(13, 110, 253, 0.08);
+  border-left-color: var(--ss-accent);
+  font-weight: 600;
+}
+.ss-nav-link .badge { margin-left: auto; }
+
+/* ---------- KPI cards ---------------------------------------------------- */
+.ss-kpi-value {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+.ss-kpi-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ss-muted);
+}
+
+/* ---------- Wireframe placeholder boxes --------------------------------- */
+/* Hatched / dashed boxes signal "this would be a chart/heatmap/visual" */
+.ss-placeholder {
+  border: 1.5px dashed #c8cdd4;
+  border-radius: 0.5rem;
+  background:
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 12px,
+      rgba(13, 110, 253, 0.04) 12px,
+      rgba(13, 110, 253, 0.04) 24px
+    );
+  color: var(--ss-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 0.85rem;
+  padding: 1rem;
+}
+
+/* ---------- Floor plan heat-map mock ------------------------------------ */
+.ss-heat-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
+}
+.ss-heat-cell {
+  aspect-ratio: 16 / 9;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  color: #1f2937;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+@media (max-width: 575.98px) {
+  .ss-heat-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ---------- Funnel bars -------------------------------------------------- */
+.ss-funnel-row {
+  display: grid;
+  grid-template-columns: 160px 1fr 60px;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 0.4rem 0;
+}
+.ss-funnel-bar {
+  height: 28px;
+  background: var(--ss-accent);
+  border-radius: 4px;
+  opacity: 0.85;
+}
+@media (max-width: 575.98px) {
+  .ss-funnel-row { grid-template-columns: 110px 1fr 50px; font-size: 0.8rem; }
+}
+
+/* ---------- Misc --------------------------------------------------------- */
+.ss-section-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+.ss-section-sub {
+  color: var(--ss-muted);
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.ss-pill-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #22c55e;
+  margin-right: 0.4rem;
+}
+
+/* Severity colors used in incident table */
+.ss-sev-high { background: #fee2e2; color: #991b1b; }
+.ss-sev-med  { background: #fef3c7; color: #92400e; }
+.ss-sev-low  { background: #dbeafe; color: #1e40af; }
