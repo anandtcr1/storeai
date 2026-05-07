@@ -1,6 +1,6 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { Offcanvas, Badge } from 'react-bootstrap';
+import React from "react";
+import { NavLink } from "react-router-dom";
+import { Offcanvas, Badge } from "react-bootstrap";
 
 /**
  * Sidebar navigation.
@@ -21,27 +21,49 @@ import { Offcanvas, Badge } from 'react-bootstrap';
 // every render. Each item maps to a route.
 const MENU = [
   {
-    group: 'Operations',
+    group: "Operations",
     items: [
-      { to: '/live-ops', icon: 'bi-broadcast',     label: 'Live ops',        badge: 3 },
-      { to: '/analytics',icon: 'bi-graph-up',      label: 'Analytics' },
-      { to: '/merchandising', icon: 'bi-grid-3x3-gap', label: 'Merchandising' },
-      { to: '/workforce', icon: 'bi-people',       label: 'Workforce' }
-    ]
+      { to: "/live-ops", icon: "bi-broadcast", label: "Live ops", badge: 3 },
+      { to: "/analytics", icon: "bi-graph-up", label: "Analytics" },
+      { to: "/merchandising", icon: "bi-grid-3x3-gap", label: "Merchandising" },
+      { to: "/workforce", icon: "bi-people", label: "Workforce" },
+    ],
   },
   {
-    group: 'Security',
+    group: "AI Insights",
     items: [
-      { to: '/loss-prevention', icon: 'bi-shield-exclamation', label: 'Loss prevention', badge: 2 }
-    ]
+      {
+        to: "/shelf-optimizer",
+        icon: "bi-stars",
+        label: "Shelf optimizer",
+        badge: 12,
+      },
+      {
+        to: "/demand-forecast",
+        icon: "bi-bar-chart-line",
+        label: "Demand forecasting",
+      },
+      { to: "/dynamic-pricing", icon: "bi-tags", label: "Dynamic pricing" },
+    ],
   },
   {
-    group: 'Insights',
+    group: "Security",
     items: [
-      { to: '/reports',  icon: 'bi-file-earmark-text', label: 'Reports' },
-      { to: '/settings', icon: 'bi-gear',           label: 'Settings' }
-    ]
-  }
+      {
+        to: "/loss-prevention",
+        icon: "bi-shield-exclamation",
+        label: "Loss prevention",
+        badge: 2,
+      },
+    ],
+  },
+  {
+    group: "Insights",
+    items: [
+      { to: "/reports", icon: "bi-file-earmark-text", label: "Reports" },
+      { to: "/settings", icon: "bi-gear", label: "Settings" },
+    ],
+  },
 ];
 
 // Inner content reused by both the desktop column AND the mobile offcanvas.
@@ -51,25 +73,33 @@ const NavContent = ({ onNavigate }) => (
       <div className="fw-bold">SmartStore AI</div>
       <div className="small text-muted">Al Wahda branch</div>
     </div>
-    {MENU.map(group => (
+    {MENU.map((group) => (
       <div key={group.group} className="mb-2">
         <div className="ss-nav-group-label">{group.group}</div>
-        {group.items.map(item => (
+        {group.items.map((item) => (
           <NavLink
             key={item.to}
             to={item.to}
-            className={({ isActive }) => `ss-nav-link ${isActive ? 'active' : ''}`}
+            className={({ isActive }) =>
+              `ss-nav-link ${isActive ? "active" : ""}`
+            }
             onClick={onNavigate}
           >
             <i className={`bi ${item.icon}`} />
             <span>{item.label}</span>
-            {item.badge && <Badge bg="danger" pill>{item.badge}</Badge>}
+            {item.badge && (
+              <Badge bg="danger" pill>
+                {item.badge}
+              </Badge>
+            )}
           </NavLink>
         ))}
       </div>
     ))}
     <div className="px-3 pt-3 mt-3 border-top small text-muted">
-      <div><i className="bi bi-info-circle me-1" /> v1.0 · pilot</div>
+      <div>
+        <i className="bi bi-info-circle me-1" /> v1.0 · pilot
+      </div>
       <div className="mt-1">UAE PDPL compliant</div>
     </div>
   </nav>
@@ -84,7 +114,12 @@ const Sidebar = ({ show, onHide }) => {
       </aside>
 
       {/* Mobile/tablet: slide-in offcanvas drawer */}
-      <Offcanvas show={show} onHide={onHide} responsive="lg" className="d-lg-none">
+      <Offcanvas
+        show={show}
+        onHide={onHide}
+        responsive="lg"
+        className="d-lg-none"
+      >
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>Menu</Offcanvas.Title>
         </Offcanvas.Header>

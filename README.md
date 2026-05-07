@@ -14,15 +14,18 @@ Stack: **React 18 · React-Bootstrap (Bootstrap 5) · React Router v6 · Rechart
 
 ## What's included
 
-| Route | Component | Purpose |
-|---|---|---|
-| `/live-ops` | `LiveOps.jsx` | Default landing — KPIs, floor heat map, active alerts |
-| `/analytics` | `Analytics.jsx` | Conversion funnel, footfall trends, journeys |
-| `/merchandising` | `Merchandising.jsx` | Zone performance table, out-of-stock log |
-| `/workforce` | `Workforce.jsx` | Traffic forecast vs. staffing, recommendations |
+| Route              | Component            | Purpose                                                |
+| ------------------ | -------------------- | ------------------------------------------------------ |
+| `/live-ops`        | `LiveOps.jsx`        | Default landing — KPIs, floor heat map, active alerts  |
+| `/analytics`       | `Analytics.jsx`      | Conversion funnel, footfall trends, journeys           |
+| `/merchandising`   | `Merchandising.jsx`  | Zone performance table, out-of-stock log               |
+| `/workforce`       | `Workforce.jsx`      | Traffic forecast vs. staffing, recommendations         |
+| `/shelf-optimizer` | `ShelfOptimizer.jsx` | Foot-fall-driven shelf placement recommendations       |
+| `/demand-forecast` | `DemandForecast.jsx` | SKU demand forecasting and stockout reorder alerts     |
+| `/dynamic-pricing` | `DynamicPricing.jsx` | AI price suggestions, ESL sync, and pricing guardrails |
 | `/loss-prevention` | `LossPrevention.jsx` | Incident log with severity filter and video drill-down |
-| `/reports` | `Reports.jsx` | Recent reports, custom builder, scheduled exports |
-| `/settings` | `Settings.jsx` | Cameras, zones, POS, users, privacy, plan, audit |
+| `/reports`         | `Reports.jsx`        | Recent reports, custom builder, scheduled exports      |
+| `/settings`        | `Settings.jsx`       | Cameras, zones, POS, users, privacy, plan, audit       |
 
 ## How the wireframe maps to the source documents
 
@@ -50,6 +53,9 @@ Stack: **React 18 · React-Bootstrap (Bootstrap 5) · React Router v6 · Rechart
   (Tech Spec §9), users, privacy (§14), plan, and audit log.
 - **§14 Privacy & PDPL** → privacy toggles, retention slider, audit-log
   surface; footer notes UAE region hosting and PDPL compliance.
+- **AI Insights** → new `/shelf-optimizer`, `/demand-forecast`, and `/dynamic-pricing` pages
+  surface AI recommendations tied to foot-fall metrics, SKU demand forecasts, and
+  ESL-enabled pricing rules with guardrails.
 - **§16 Recommendations** → mobile-first via Bootstrap responsive grid
   and an Offcanvas sidebar; multi-tenant store selector in header;
   every alert ships with an action button.

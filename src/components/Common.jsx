@@ -1,5 +1,5 @@
-import React from 'react';
-import { Card } from 'react-bootstrap';
+import React from "react";
+import { Card, Badge } from "react-bootstrap";
 
 /**
  * KpiCard — the four headline numbers shown on Live ops (and reused
@@ -14,9 +14,17 @@ import { Card } from 'react-bootstrap';
 export const KpiCard = ({ label, value, suffix, trend, icon }) => {
   const trendNum = trend != null ? Number(trend) : null;
   const trendColor =
-    trendNum == null ? 'text-muted' : trendNum >= 0 ? 'text-success' : 'text-danger';
+    trendNum == null
+      ? "text-muted"
+      : trendNum >= 0
+        ? "text-success"
+        : "text-danger";
   const trendIcon =
-    trendNum == null ? '' : trendNum >= 0 ? 'bi-arrow-up-short' : 'bi-arrow-down-short';
+    trendNum == null
+      ? ""
+      : trendNum >= 0
+        ? "bi-arrow-up-short"
+        : "bi-arrow-down-short";
 
   return (
     <Card className="h-100">
@@ -27,7 +35,9 @@ export const KpiCard = ({ label, value, suffix, trend, icon }) => {
         </div>
         <div className="ss-kpi-value mt-2">
           {value}
-          {suffix && <span className="fs-5 fw-normal text-muted ms-1">{suffix}</span>}
+          {suffix && (
+            <span className="fs-5 fw-normal text-muted ms-1">{suffix}</span>
+          )}
         </div>
         {trendNum != null && (
           <div className={`small mt-1 ${trendColor}`}>
@@ -59,11 +69,21 @@ export const PageHeader = ({ title, subtitle, actions }) => (
  * "a real chart / heatmap / video clip / map goes here".
  * Used liberally — this is a wireframe, not a finished UI.
  */
-export const Placeholder = ({ height = 200, label = 'Visualization placeholder', icon }) => (
+export const Placeholder = ({
+  height = 200,
+  label = "Visualization placeholder",
+  icon,
+}) => (
   <div className="ss-placeholder" style={{ minHeight: height }}>
     <div>
       {icon && <i className={`bi ${icon} d-block fs-3 mb-2`} />}
       {label}
     </div>
   </div>
+);
+
+export const AiBadge = ({ text = "AI" }) => (
+  <Badge bg="info" pill className="text-dark small align-middle ms-1">
+    {text}
+  </Badge>
 );
